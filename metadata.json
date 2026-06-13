@@ -1,0 +1,12 @@
+{
+  "name": "AI Language Translator",
+  "description": "A professional, sleek AI-powered language translation web application featuring real-time translation, language detection, swap functionality, dark mode, persistent search history, and file exports.",
+  "requestFramePermissions": [
+    "clipboard-read",
+    "clipboard-write",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
