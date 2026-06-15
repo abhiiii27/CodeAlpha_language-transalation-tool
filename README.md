@@ -186,6 +186,7 @@ Place screenshots here:
 ## 8) Challenges and Learnings 🧩
 - Implemented **structured JSON parsing** for insights responses and ensured the UI can render consistent data categories.
 - Built **graceful degradation** paths for missing/failed API availability (offline/mock + local dictionary fallback).
+- Fixed error handling in API unavailability detection (corrected status code check from 553 to 503).
 - Managed multiple client-side features with **localStorage** persistence (theme, translation history, favorites/phrasebook).
 - Integrated **browser speech APIs** (Speech-to-Text and Speech Synthesis) with safe cleanup on unmount.
 

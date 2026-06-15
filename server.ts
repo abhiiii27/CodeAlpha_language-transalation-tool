@@ -3,6 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
+import { getGeminiApiKey } from "./src/serverEnv";
 
 dotenv.config();
 
@@ -11,27 +12,33 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Initialize Gemini Client
-const apiKey = process.env.GEMINI_API_KEY;
-let ai: GoogleGenAI | null = null;
 
-if (apiKey && apiKey !== "MY_GEMINI_API_KEY") {
+// Initialize Gemini Client
+let ai: GoogleGenAI | null = null;
+const apiKey = getGeminiApiKey();
+
+if (apiKey) {
   try {
     ai = new GoogleGenAI({
       apiKey,
       httpOptions: {
         headers: {
-          'User-Agent': 'aistudio-build',
-        }
-      }
+          "User-Agent": "aistudio-build",
+        },
+      },
     });
     console.log("Gemini API initialized successfully.");
   } catch (error) {
     console.error("Failed to initialize Gemini API:", error);
+    ai = null;
   }
 } else {
-  console.warn("GEMINI_API_KEY is missing or using placeholder in environment variables. Web translation will fall back to local explanations.");
+  console.warn(
+    "GEMINI_API_KEY is missing (or set to a placeholder). Gemini translation is disabled and the app will use offline/mock fallbacks. " +
+    "Create a .env.local file with GEMINI_API_KEY=your_key before running."
+  );
 }
+
 
 // Deep locale dictionary mapping for common global translations representing graceful degradation
 const COMMON_DICTIONARY: Record<string, Record<string, string>> = {
@@ -193,7 +200,7 @@ const COMMON_DICTIONARY: Record<string, Record<string, string>> = {
 
 function findLocalTranslation(text: string, targetLangName: string): string | null {
   const normText = text.trim().toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "");
-  
+
   for (const key of Object.keys(COMMON_DICTIONARY)) {
     const entry = COMMON_DICTIONARY[key];
     const matches = Object.entries(entry).some(([lang, val]) => {
@@ -234,14 +241,14 @@ async function handleGenerateContentWithFallback(
         lastError = err;
         const errStr = String(err.message || err);
         console.warn(`Error running model ${modelName}:`, errStr);
-        
+
         // We retry if it's a 503, 429, temporary network issue, or high demand spike
-        const isTemporary = 
-          errStr.includes("503") || 
-          errStr.includes("429") || 
-          errStr.includes("UNAVAILABLE") || 
-          errStr.includes("high demand") || 
-          errStr.includes("locked") || 
+        const isTemporary =
+          errStr.includes("503") ||
+          errStr.includes("429") ||
+          errStr.includes("UNAVAILABLE") ||
+          errStr.includes("high demand") ||
+          errStr.includes("locked") ||
           errStr.includes("ResourceExhausted") ||
           errStr.includes("overloaded");
 
@@ -345,19 +352,19 @@ Please translate accurately, adapting properly according to the tone instruction
       translatedText: result.translatedText,
       detectedSourceLanguage: result.detectedSourceLanguage || (sourceLang === "Auto-Detect" ? "English" : sourceLang)
     });
-  } catch (error: any) {
-    console.error("Translation API error:", error);
-    
-    const errStr = String(error.message || error);
-    const isServiceUnavailable = 
-      errStr.includes("553") || // 503 or custom
-      errStr.includes("429") || 
-      errStr.includes("UNAVAILABLE") || 
-      errStr.includes("high demand") || 
-      errStr.includes("ResourceExhausted") ||
-      errStr.includes("overloaded");
+    } catch (error: any) {
+        console.error("Translation API error:", error);
 
-    if (isServiceUnavailable) {
+        const errStr = String(error.message || error);
+        const isServiceUnavailable =
+          errStr.includes("503") || // 503 or custom
+          errStr.includes("429") ||
+          errStr.includes("UNAVAILABLE") ||
+          errStr.includes("high demand") ||
+          errStr.includes("ResourceExhausted") ||
+          errStr.includes("overloaded");
+
+        if (isServiceUnavailable) {
       const localTranslation = findLocalTranslation(text, targetLang);
       if (localTranslation) {
         console.log(`[Graceful Recovery] Translated "${text}" to "${targetLang}" locally using dictionary fallback.`);
