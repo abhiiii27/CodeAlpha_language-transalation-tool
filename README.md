@@ -173,13 +173,20 @@ npm run start
 ---
 
 ## 7) Screenshots 📸
-Place screenshots here:
 
-- **Screenshot 1:** Main translator screen (inputs, language selectors, tone selector)
-- **Screenshot 2:** Translation output controls (copy, speak, bookmark, download)
-- **Screenshot 3:** Translation History (search + load + delete)
-- **Screenshot 4:** Phrasebook folders and saved phrases
-- **Screenshot 5:** Linguistic & Cultural Insights drawer
+Here is a glimpse of the LingoAI Translator interface in action:
+
+### 1. Contextual Language Translation Interface
+<div align="center">
+  <img src="./assets/screenshot-1.png" alt="LingoAI Translator Hero Section" width="800" />
+  <p><em>The main translator screen showcasing the hero section, neural precision description, and tone & context settings.</em></p>
+</div>
+
+### 2. Full Translation Workspace
+<div align="center">
+  <img src="./assets/screenshot-2.png" alt="Full Translation Workspace" width="800" />
+  <p><em>The complete workspace including the input source area, tone selection, and translation output with linguistic insights.</em></p>
+</div>
 
 ---
 
