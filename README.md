@@ -177,18 +177,23 @@ npm run start
 Here is a glimpse of the LingoAI Translator interface in action:
 
 ### 1. Contextual Language Translation Interface
-<div align="center">
-  <img src="./assets/screenshot-1.png" alt="LingoAI Translator Hero Section" width="800" />
-  <p><em>The main translator screen showcasing the hero section, neural precision description, and tone & context settings.</em></p>
-</div>
+
+
+
+<img width="1907" height="813" alt="Screenshot 2026-06-18 094123" src="https://github.com/user-attachments/assets/d0920fed-798e-471f-b66c-0d82b18127b3" />
+
+
+
+
+
+
 
 ### 2. Full Translation Workspace
-<div align="center">
-  <img src="./assets/screenshot-2.png" alt="Full Translation Workspace" width="800" />
-  <p><em>The complete workspace including the input source area, tone selection, and translation output with linguistic insights.</em></p>
-</div>
 
----
+
+<img width="1897" height="870" alt="Screenshot 2026-06-18 094140" src="https://github.com/user-attachments/assets/a14a054d-49d0-479f-a4d2-b67d6b34d8b3" />
+
+
 
 ## 8) Challenges and Learnings 🧩
 - Implemented **structured JSON parsing** for insights responses and ensured the UI can render consistent data categories.
