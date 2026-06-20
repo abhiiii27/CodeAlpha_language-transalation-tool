@@ -170,11 +170,27 @@ npm run start
    - **History Stream Log**: search by text/language, load items back into the translator, delete individual entries, or clear all.
    - **Phrasebook**: filter by folder/category, move items between categories, load phrases, or clear favorites.
 
+---
 
+## 7) Screenshots 📸
+
+Here is a glimpse of the LingoAI Translator interface in action:
+
+### 1. Contextual Language Translation Interface
+<div align="center">
+  <img src="./assets/screenshot-1.png" alt="LingoAI Translator Hero Section" width="800" />
+  <p><em>The main translator screen showcasing the hero section, neural precision description, and tone & context settings.</em></p>
+</div>
+
+### 2. Full Translation Workspace
+<div align="center">
+  <img src="./assets/screenshot-2.png" alt="Full Translation Workspace" width="800" />
+  <p><em>The complete workspace including the input source area, tone selection, and translation output with linguistic insights.</em></p>
+</div>
 
 ---
 
-## 7) Challenges and Learnings 🧩
+## 8) Challenges and Learnings 🧩
 - Implemented **structured JSON parsing** for insights responses and ensured the UI can render consistent data categories.
 - Built **graceful degradation** paths for missing/failed API availability (offline/mock + local dictionary fallback).
 - Fixed error handling in API unavailability detection (corrected status code check from 553 to 503).
@@ -183,7 +199,7 @@ npm run start
 
 ---
 
-## 8) Future Enhancements 🚀
+## 9) Future Enhancements 🚀
 - Add **export/import** for history and phrasebook (e.g., JSON/CSV) to move data between devices.
 - Expand the local dictionary fallback beyond the current hardcoded phrases for improved offline usefulness.
 - Improve performance and UX for large histories/favorites (virtualized lists, pagination).
@@ -191,7 +207,7 @@ npm run start
 
 ---
 
-## 9) Contributing Guidelines 🤝
+## 10) Contributing Guidelines 🤝
 Contributions are welcome.
 
 1. Fork the repository.
@@ -204,14 +220,14 @@ Contributions are welcome.
 
 ---
 
-## 10) License 📄
+## 11) License 📄
 License information is not present as a standalone `LICENSE` file in the repository root.
 
 **Please add a `LICENSE` file to clarify the open-source license** (or update this section accordingly).
 
 ---
 
-## 11) Author 👤
+## 12) Author 👤
 - **Abhishek Buran**
 - GitHub: https://github.com/abhiiii27
 
